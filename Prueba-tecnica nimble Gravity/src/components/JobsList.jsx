@@ -1,10 +1,10 @@
 import { Job } from "./Job";
 
-export function JobsList({ jobs, apply, loadingId }) {
+export function JobsList({ jobs, apply: onApply, loadingId }) {
   return (
     <ul>
       {jobs.map((job) => (
-        <Job job={job} key={job.id} apply={apply} loading={loadingId === job.id} />
+        <Job job={job} key={job.id} apply={onApply} loading={loadingId === job.id} />
       ))}
     </ul>
   )

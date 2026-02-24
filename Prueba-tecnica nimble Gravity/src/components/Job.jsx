@@ -5,14 +5,15 @@ export function Job({ job, apply, loading }) {
   const [githubUrl, setGithubUrl] = useState("")
   const handleSubmit = (e) => {
     e.preventDefault()
-    apply(id, githubUrl)
+    apply(id, githubUrl.trim())
   }
   return (
-    <li key={id} className="bg-white rounded-lg shadow-md p-6 mb-4 w-3xl">
+    <li className="bg-white rounded-lg shadow-md p-6 mb-4 w-3xl">
       <form onSubmit={handleSubmit}>
         <h2 className="text-2xl font-semibold mb-4">{title}</h2>
         <input
-          type="text"
+          type="url"
+          required
           placeholder="Ingrese la URL del repositorio de Github..."
           className="w-full p-2 border border-gray-300 rounded mb-4"
           value={githubUrl}

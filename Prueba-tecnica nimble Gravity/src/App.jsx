@@ -4,7 +4,7 @@ import { JobsList } from "./components/JobsList"
 
 function App() {
   const [jobList, setJobList] = useState([])
-  const [loadingId, setLoadingId] = useState("")
+  const [loadingId, setLoadingId] = useState(null)
   const [candidateInfo, setCandidateInfo] = useState({
     uuid: "",
     candidateId: "",
@@ -23,14 +23,13 @@ function App() {
     try{
       const res = await fetch(POST_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           uuid: candidateInfo.uuid,
           jobId: jobId,
           candidateId: candidateInfo.candidateId,
           repoUrl: githubUrl,
+          applicationId: candidateInfo.applicationId,
         })
       })
       if (res.ok) {
@@ -42,7 +41,7 @@ function App() {
       alert("Error al enviar la postulación")
     }
     finally {
-      setLoadingId("")
+      setLoadingId(null)
     }
   }
 
